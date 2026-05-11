@@ -7,24 +7,26 @@
             </div>
         </div>
         <div class="relative h-full flex-1 overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700 grid place-content-center">
-            <ul>
-                @foreach ($routine->timers as $timer)
-                    <li class="flex items-center gap-2 place-content-center border-b border-gray-200 dark:border-neutral-700 py-2 last:border-b-0">
-                        <span class="text-2xl font-bold gap-6 flex cursor-default">
-                            <span>{{ $timer->order }}</span>
-                            <span>{{ $timer->name }}</span>
-                            <span>{{ $timer->duration }} seconds</span>
-                        </span>
-                        <a href="{{ route('routines.timers.edit', ['routine' => $routine, 'timer' => $timer]) }}" class="ml-2 text-sm text-gray-500 hover:text-blue-500">
-                            <flux:icon.pencil-square variant="mini" class="inline-block" />
-                        </a>
-                    </li>
-                @endforeach
-            </ul>
+            <div class="relative p-4">
+                <ul>
+                    @foreach ($routine->timers as $timer)
+                        <li class="flex items-center gap-2 place-content-center border-b border-gray-200 dark:border-neutral-700 py-2 last:border-b-0">
+                            <span class="text-2xl font-bold gap-6 flex cursor-default">
+                                <span>{{ $timer->order }}</span>
+                                <span>{{ $timer->name }}</span>
+                                <span>{{ $timer->duration }} seconds</span>
+                            </span>
+                            <a href="{{ route('routines.timers.edit', ['routine' => $routine, 'timer' => $timer]) }}" class="ml-2 text-sm text-gray-500 hover:text-blue-500">
+                                <flux:icon.pencil-square variant="mini" class="inline-block" />
+                            </a>
+                        </li>
+                    @endforeach
+                </ul>
 
-            <livewire:routine.play :routine="$routine" />
+                <livewire:routine.play :routine="$routine" />
+            </div>
 
-            <a href="{{ route('dashboard') }}" class="inline-flex place-content-center mt-4 px-4 py-2 border border-gray-300 text-sm font-medium rounded-md shadow-sm text-gray-500 dark:text-neutral-400 bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 gap-2">
+            <a href="{{ route('dashboard') }}" class="inline-flex place-content-center mt-4 px-4 py-2 border border-gray-300 text-sm font-medium rounded-md shadow-sm text-gray-500 dark:text-neutral-400 bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 gap-2 absolute bottom-4 left-1/2 -translate-x-1/2">
                 <flux:icon.arrow-left />
                 <span class="place-content-center">Go back</span>
             </a>

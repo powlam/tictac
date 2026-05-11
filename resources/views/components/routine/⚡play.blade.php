@@ -74,16 +74,20 @@ new class extends Component
             stopTimer();
         }
     });
-">
+" class="flex place-content-center">
 
-    @if (! $isPlaying)
-        <button wire:click="play" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-            PLAY
-            <flux:icon.play class="ml-2" />
-        </button>
-    @else
-        <span class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-gray-500">
-            {{ $currentTimer?->name ?? 'N/A' }} - {{ $timeLeft }}s left
-        </span>
+    <button type="button" wire:click="play" @click="$event.target.blur()" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 gap-2 cursor-pointer">
+        PLAY
+        <flux:icon.play class="ml-2" />
+    </button>
+    @if ($isPlaying)
+        <div class="flex flex-col items-center gap-4 absolute top-0 left-0 w-full h-full bg-white/95 dark:bg-neutral-900/95 p-4">
+            <span class="inline-flex items-center px-4 py-2 text-3xl font-bold">
+                {{ $currentTimer?->name ?? '...' }}
+            </span>
+            <span class="inline-flex items-center px-4 py-2 border border-transparent font-mono text-3xl font-medium text-purple-500">
+                {{ $timeLeft }}
+            </span>
+        </div>
     @endif
 </div>

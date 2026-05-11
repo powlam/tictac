@@ -30,10 +30,10 @@
             <ul>
                 @foreach ($routine->timers as $timer)
                     <li class="flex items-center gap-2 place-content-center border-b border-gray-200 dark:border-neutral-700 py-2 last:border-b-0">
-                        <span class="text-2xl font-bold gap-6 flex cursor-default">
-                            <span>{{ $timer->order }}</span>
-                            <span>{{ $timer->name }}</span>
-                            <span>{{ $timer->duration }} seconds</span>
+                        <span class="text-lg font-bold gap-6 flex cursor-default items-center">
+                            <span class="flex-none text-gray-500 dark:text-neutral-400 text-sm">{{ $timer->order }}</span>
+                            <span class="shrink">{{ $timer->name }}</span>
+                            <span class="flex-none text-gray-500 dark:text-neutral-400">{{ $timer->duration }} "</span>
                         </span>
                         <a href="{{ route('routines.timers.edit', ['routine' => $routine, 'timer' => $timer]) }}" class="ml-2 text-sm text-gray-500 hover:text-purple-500">
                             <flux:icon.pencil-square variant="mini" class="inline-block" />

@@ -1,16 +1,3 @@
-<?php
- 
-use Livewire\Component;
-use App\Models\Routine;
- 
-new class extends Component {
-    public function play() // TODO: implement routine play logic
-    {
-        logger('Routine play!!!');
-    }
-};
-?>
- 
 <x-layouts::app :title="__('Dashboard')">
     <div class="flex h-full w-full flex-1 flex-col gap-4 rounded-xl">
         <div class="grid auto-rows-min gap-4 md:grid-cols-3">
@@ -35,10 +22,7 @@ new class extends Component {
                 @endforeach
             </ul>
 
-            <button wire:click="play" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                PLAY
-                <flux:icon.play class="ml-2" />
-            </button>
+            <livewire:routine.play :routine="$routine" />
 
             <a href="{{ route('dashboard') }}" class="inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md shadow-sm text-gray-700 dark:text-neutral-300 bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                 Go back

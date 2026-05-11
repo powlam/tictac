@@ -19,7 +19,7 @@
                 </button>
             </form>
 
-            <form action="{{ route('routines.destroy', $routine) }}" method="POST" class="inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md shadow-sm text-gray-700 dark:text-neutral-300 bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
+            <form action="{{ route('routines.destroy', $routine) }}" method="POST" class="mt-4 inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md shadow-sm text-gray-700 dark:text-neutral-300 bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
                 @csrf
                 @method('DELETE')
                 <button type="submit" onclick="return confirm('Are you sure you want to delete this routine? This action cannot be undone.')" class="text-red-600 hover:text-red-800">
@@ -46,10 +46,7 @@
                 Create new timer
             </a>
 
-            <a href="{{ route('dashboard') }}" class="inline-flex place-content-center mt-4 px-4 py-2 border border-gray-300 text-sm font-medium rounded-md shadow-sm text-gray-500 dark:text-neutral-400 bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 gap-2">
-                <flux:icon.arrow-left />
-                <span class="place-content-center">Go back</span>
-            </a>
+            <x-go-back url="{{ route('dashboard') }}" />
         </div>
     </div>
 </x-layouts::app>

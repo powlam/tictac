@@ -24,7 +24,7 @@ class TimerController extends Controller
     public function store(Request $request, Routine $routine)
     {
         $timer = $routine->timers()->create($request->validate([
-            'order' => ['required', 'integer', 'min:1', 'max:' . ($routine->timers()->count() + 1)],
+            'order' => ['required', 'integer', 'min:1', 'max:'.($routine->timers()->count() + 1)],
             'name' => ['required', 'string', 'max:255'],
             'duration' => ['required', 'integer', 'min:1'],
         ]));
@@ -51,7 +51,7 @@ class TimerController extends Controller
     public function update(Request $request, Routine $routine, Timer $timer)
     {
         $validated = $request->validate([
-            'order' => ['required', 'integer', 'min:1', 'max:' . ($routine->timers()->count() + 1)],
+            'order' => ['required', 'integer', 'min:1', 'max:'.($routine->timers()->count() + 1)],
             'name' => ['required', 'string', 'max:255'],
             'duration' => ['required', 'integer', 'min:1'],
         ]);
@@ -82,12 +82,12 @@ class TimerController extends Controller
         foreach ($routine->timers as $timer) {
             if ($timer->is($changedTimer)) {
                 // Skip the changed timer, it has already been updated with the correct order
-            } else if ($changedTimerOrder === $order) {
+            } elseif ($changedTimerOrder === $order) {
                 $timer->update([
                     'order' => $order + 1,
                 ]);
                 $timer->refresh();
-            } else if ($timer->order != $order) {
+            } elseif ($timer->order != $order) {
                 $timer->update([
                     'order' => $order,
                 ]);

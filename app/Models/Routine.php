@@ -12,7 +12,7 @@ class Routine extends Model
 {
     /**
      * Get the user that owns the routine.
-     * 
+     *
      * @return BelongsTo<User>
      */
     public function user(): BelongsTo
@@ -22,7 +22,7 @@ class Routine extends Model
 
     /**
      * Get the timers for the routine.
-     * 
+     *
      * @return HasMany<Timer>
      */
     public function timers(): HasMany

@@ -11,7 +11,7 @@ class Timer extends Model
 {
     /**
      * Get the routine that owns the timer.
-     * 
+     *
      * @return BelongsTo<Routine>
      */
     public function routine(): BelongsTo

@@ -46,10 +46,10 @@ class User extends Authenticatable
     }
 
     /**
-    * Get the routines for the user.
-    * 
-    * @return HasMany<Routine>
-    */
+     * Get the routines for the user.
+     *
+     * @return HasMany<Routine>
+     */
     public function routines(): HasMany
     {
         return $this->hasMany(Routine::class);

@@ -37,8 +37,17 @@ new class extends Component
 
     public function nextTimer()
     {
+        $finishedTimer = $this->currentTimer;
+
         $this->currentIndex++;
         $this->setCurrentTimer();
+
+        if ($finishedTimer !== null) {
+            $this->dispatch('routine-timer-ended', [
+                'timerId' => $finishedTimer->id,
+                'timerName' => $finishedTimer->name,
+            ]);
+        }
     }
 
     public function decrementTime()
@@ -65,6 +74,31 @@ new class extends Component
             clearInterval(this.interval);
             this.interval = null;
         }
+    },
+    playTimerEndSound() {
+        console.log('Playing sound');
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        const gain = audioContext.createGain();
+        gain.gain.setValueAtTime(0, audioContext.currentTime);
+        gain.gain.linearRampToValueAtTime(0.16, audioContext.currentTime + 0.02);
+        gain.gain.linearRampToValueAtTime(0, audioContext.currentTime + 0.22);
+        gain.connect(audioContext.destination);
+
+        const createTone = (frequency, start, duration) => {
+            const oscillator = audioContext.createOscillator();
+            oscillator.type = 'sine';
+            oscillator.frequency.setValueAtTime(frequency, start);
+            oscillator.connect(gain);
+            oscillator.start(start);
+            oscillator.stop(start + duration);
+        };
+
+        const now = audioContext.currentTime;
+        createTone(880, now, 0.08);
+        createTone(1100, now + 0.10, 0.12);
+    },
+    handleTimerChange() {
+        this.playTimerEndSound();
     }
 }" x-init="
     $watch('$wire.isPlaying', (isPlaying) => {
@@ -73,6 +107,10 @@ new class extends Component
         } else {
             stopTimer();
         }
+    });
+
+    window.addEventListener('routine-timer-ended', () => {
+        handleTimerChange();
     });
 " class="flex place-content-center">
 

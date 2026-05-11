@@ -11,22 +11,22 @@
                 @csrf
                 <div>
                     <label for="order" class="block text-sm font-medium text-gray-700 dark:text-neutral-300">Order</label>
-                    <input type="number" name="order" id="order" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" min="1" max="{{ $routine->timers()->count() + 1 }}" value="{{ $routine->timers()->count() + 1 }}">
+                    <input type="number" name="order" id="order" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500 sm:text-sm" min="1" max="{{ $routine->timers()->count() + 1 }}" value="{{ $routine->timers()->count() + 1 }}">
                 </div>
                 <div>
                     <label for="name" class="block text-sm font-medium text-gray-700 dark:text-neutral-300">Name</label>
-                    <input type="text" name="name" id="name" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm">
+                    <input type="text" name="name" id="name" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500 sm:text-sm">
                 </div>
                 <div>
                     <label for="duration" class="block text-sm font-medium text-gray-700 dark:text-neutral-300">Duration</label>
-                    <input type="number" name="duration" id="duration" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" placeholder="Duration in seconds" min="1">
+                    <input type="number" name="duration" id="duration" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500 sm:text-sm" placeholder="Duration in seconds" min="1">
                 </div>
-                <button type="submit" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                <button type="submit" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
                     Create
                 </button>
             </form>
 
-            <a href="{{ route('routines.show', $routine) }}" class="inline-flex place-content-center mt-4 px-4 py-2 border border-gray-300 text-sm font-medium rounded-md shadow-sm text-gray-500 dark:text-neutral-400 bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 gap-2">
+            <a href="{{ route('routines.show', $routine) }}" class="inline-flex place-content-center mt-4 px-4 py-2 border border-gray-300 text-sm font-medium rounded-md shadow-sm text-gray-500 dark:text-neutral-400 bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 gap-2">
                 <flux:icon.arrow-left />
                 <span class="place-content-center">Go back</span>
             </a>

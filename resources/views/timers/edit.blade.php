@@ -12,22 +12,22 @@
                 @method('PUT')
                 <div>
                     <label for="order" class="block text-sm font-medium text-gray-700 dark:text-neutral-300">Order</label>
-                    <input type="number" name="order" id="order" value="{{ $timer->order }}" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" min="1" max="{{ $routine->timers()->count() }}">
+                    <input type="number" name="order" id="order" value="{{ $timer->order }}" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500 sm:text-sm" min="1" max="{{ $routine->timers()->count() }}">
                 </div>
                 <div>
                     <label for="name" class="block text-sm font-medium text-gray-700 dark:text-neutral-300">Name</label>
-                    <input type="text" name="name" id="name" value="{{ $timer->name }}" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm">
+                    <input type="text" name="name" id="name" value="{{ $timer->name }}" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500 sm:text-sm">
                 </div>
                 <div>
                     <label for="duration" class="block text-sm font-medium text-gray-700 dark:text-neutral-300">Duration</label>
-                    <input type="number" name="duration" id="duration" value="{{ $timer->duration }}" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" placeholder="Duration in seconds" min="1">
+                    <input type="number" name="duration" id="duration" value="{{ $timer->duration }}" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500 sm:text-sm" placeholder="Duration in seconds" min="1">
                 </div>
-                <button type="submit" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                <button type="submit" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
                     Update
                 </button>
             </form>
 
-            <form action="{{ route('routines.timers.destroy', ['routine' => $routine, 'timer' => $timer]) }}" method="POST" class="inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md shadow-sm text-gray-700 dark:text-neutral-300 bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+            <form action="{{ route('routines.timers.destroy', ['routine' => $routine, 'timer' => $timer]) }}" method="POST" class="inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md shadow-sm text-gray-700 dark:text-neutral-300 bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
                 @csrf
                 @method('DELETE')
                 <button type="submit" onclick="return confirm('Are you sure you want to delete this timer? This action cannot be undone.')" class="text-red-600 hover:text-red-800">
@@ -35,7 +35,7 @@
                 </button>
             </form>
 
-            <a href="{{ route('routines.show', $routine) }}" class="inline-flex place-content-center mt-4 px-4 py-2 border border-gray-300 text-sm font-medium rounded-md shadow-sm text-gray-500 dark:text-neutral-400 bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 gap-2">
+            <a href="{{ route('routines.show', $routine) }}" class="inline-flex place-content-center mt-4 px-4 py-2 border border-gray-300 text-sm font-medium rounded-md shadow-sm text-gray-500 dark:text-neutral-400 bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 gap-2">
                 <flux:icon.arrow-left />
                 <span class="place-content-center">Go back</span>
             </a>

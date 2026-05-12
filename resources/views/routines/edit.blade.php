@@ -10,21 +10,33 @@
             <form action="{{ route('routines.update', $routine) }}" method="POST" class="flex flex-col gap-4 w-full max-w-md">
                 @csrf
                 @method('PUT')
-                <div>
-                    <label for="name" class="block text-sm font-medium text-gray-700 dark:text-neutral-300">Name</label>
-                    <input type="text" name="name" id="name" value="{{ $routine->name }}" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500 sm:text-sm">
+
+                <!-- Name -->
+                <flux:input
+                    name="name"
+                    :label="__('Name')"
+                    :value="old('name') ?? $routine->name"
+                    type="text"
+                    required
+                    autofocus
+                    autocomplete="name"
+                    placeholder="John Doe"
+                />
+
+                <div class="flex items-center justify-end">
+                    <flux:button variant="primary" type="submit" class="w-full" data-test="update-routine-button">
+                        {{ __('Update') }}
+                    </flux:button>
+
+                    <flux:button variant="danger" type="submit" class="w-full" data-test="delete-routine-button" onclick="return confirm('Are you sure you want to delete this routine? This action cannot be undone.')" form="delete-routine-form">
+                        {{ __('Delete') }}
+                    </flux:button>
                 </div>
-                <button type="submit" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
-                    Update
-                </button>
             </form>
 
-            <form action="{{ route('routines.destroy', $routine) }}" method="POST" class="mt-4 inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md shadow-sm text-gray-700 dark:text-neutral-300 bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
+            <form action="{{ route('routines.destroy', $routine) }}" id="delete-routine-form" method="POST" class="hidden">
                 @csrf
                 @method('DELETE')
-                <button type="submit" onclick="return confirm('Are you sure you want to delete this routine? This action cannot be undone.')" class="text-red-600 hover:text-red-800">
-                    Delete
-                </button>
             </form>
 
             <ul>

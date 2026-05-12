@@ -9,21 +9,51 @@
         <div class="relative h-full flex-1 overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700 grid place-content-center">
             <form action="{{ route('routines.timers.store', ['routine' => $routine]) }}" method="POST" class="flex flex-col gap-4 w-full max-w-md">
                 @csrf
-                <div>
-                    <label for="order" class="block text-sm font-medium text-gray-700 dark:text-neutral-300">Order</label>
-                    <input type="number" name="order" id="order" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500 sm:text-sm" min="1" max="{{ $routine->timers()->count() + 1 }}" value="{{ $routine->timers()->count() + 1 }}">
+
+                <!-- Order -->
+                <flux:input
+                    name="order"
+                    :label="__('Order')"
+                    min="1"
+                    :max="$routine->timers()->count() + 1"
+                    :value="old('order') ?? $routine->timers()->count() + 1"
+                    type="number"
+                    required
+                    autofocus
+                    autocomplete="order"
+                    placeholder="1"
+                />
+
+                <!-- Name -->
+                <flux:input
+                    name="name"
+                    :label="__('Name')"
+                    :value="old('name')"
+                    type="text"
+                    required
+                    autofocus
+                    autocomplete="name"
+                    placeholder="John Doe"
+                />
+
+                <!-- Duration -->
+                <flux:input
+                    name="duration"
+                    :label="__('Duration')"
+                    :value="old('duration')"
+                    type="number"
+                    required
+                    autofocus
+                    autocomplete="duration"
+                    placeholder="Duration in seconds"
+                    min="1"
+                />
+
+                <div class="flex items-center justify-end">
+                    <flux:button variant="primary" type="submit" class="w-full" data-test="create-timer-button">
+                        {{ __('Create') }}
+                    </flux:button>
                 </div>
-                <div>
-                    <label for="name" class="block text-sm font-medium text-gray-700 dark:text-neutral-300">Name</label>
-                    <input type="text" name="name" id="name" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500 sm:text-sm">
-                </div>
-                <div>
-                    <label for="duration" class="block text-sm font-medium text-gray-700 dark:text-neutral-300">Duration</label>
-                    <input type="number" name="duration" id="duration" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500 sm:text-sm" placeholder="Duration in seconds" min="1">
-                </div>
-                <button type="submit" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
-                    Create
-                </button>
             </form>
 
             <x-go-back url="{{ route('routines.show', $routine) }}" />

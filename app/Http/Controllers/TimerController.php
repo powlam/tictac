@@ -31,7 +31,7 @@ class TimerController extends Controller
 
         $this->reorderTimers($routine, $timer);
 
-        return redirect()->route('routines.show', $routine);
+        return redirect()->route('routines.edit', $routine);
     }
 
     /**
@@ -60,7 +60,7 @@ class TimerController extends Controller
 
         $this->reorderTimers($routine, $timer);
 
-        return redirect()->route('routines.show', $routine);
+        return redirect()->route('routines.edit', $routine);
     }
 
     /**
@@ -71,7 +71,7 @@ class TimerController extends Controller
         Timer::destroy($timer->id);
         $this->reorderTimers($routine);
 
-        return redirect()->route('routines.show', $routine);
+        return redirect()->route('routines.edit', $routine);
     }
 
     private function reorderTimers(Routine $routine, ?Timer $changedTimer = null): void

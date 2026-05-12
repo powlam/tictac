@@ -20,11 +20,11 @@ class RoutineController extends Controller
      */
     public function store(Request $request)
     {
-        auth()->user()->routines()->create($request->validate([
+        $routine = auth()->user()->routines()->create($request->validate([
             'name' => ['required', 'string', 'max:255'],
         ]));
 
-        return redirect()->route('dashboard');
+        return redirect()->route('routines.edit', $routine);
     }
 
     /**
@@ -56,7 +56,7 @@ class RoutineController extends Controller
             'name' => ['required', 'string', 'max:255'],
         ]));
 
-        return redirect()->route('dashboard');
+        return redirect()->route('routines.edit', $routine);
     }
 
     /**

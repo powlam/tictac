@@ -1,13 +1,20 @@
 {
     "$schema": "https://getcomposer.org/schema.json",
-    "name": "laravel/livewire-starter-kit",
+    "name": "powlam/tictac",
     "type": "project",
-    "description": "The official Laravel starter kit for Livewire.",
+    "description": "A simple timer application built with Laravel and Livewire.",
     "keywords": [
         "laravel",
-        "framework"
+        "routine",
+        "timer"
     ],
     "license": "MIT",
+    "authors": [
+        {
+            "name": "Paul Albandoz",
+            "email": "palbandoz@gmail.com"
+        }
+    ],
     "require": {
         "php": "^8.3",
         "laravel/fortify": "^1.34",

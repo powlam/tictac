@@ -4,9 +4,10 @@
 
 <flux:button
     href="{{ $url ?: route('dashboard') }}"
-    icon="arrow-left"
-    variant="subtle"
+    icon:trailing="arrow-up-right"
+    variant="primary"
+    color="purple"
     class="mt-4"
 >
-    Go back
+    {{ $slot }}
 </flux:button>

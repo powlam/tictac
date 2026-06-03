@@ -10,6 +10,8 @@ new class extends Component
 
     public bool $isPlaying = false;
 
+    public bool $isPaused = false;
+
     public ?Timer $currentTimer = null;
 
     public int $currentIndex = 0;
@@ -21,6 +23,23 @@ new class extends Component
         $this->isPlaying = true;
         $this->currentIndex = -1;
         $this->setCurrentTimer();
+    }
+
+    public function pause()
+    {
+        $this->isPaused = true;
+    }
+
+    public function resume()
+    {
+        $this->isPaused = false;
+    }
+
+    public function stop()
+    {
+        $this->currentIndex = $this->routine->timers->count() - 1;
+        $this->currentTimer = $this->routine->timers[$this->currentIndex];
+        $this->nextTimer();
     }
 
     public function setCurrentTimer()
@@ -79,6 +98,17 @@ new class extends Component
         this.interval = setInterval(() => {
             $wire.call('decrementTime');
         }, 1000);
+    },
+    pauseTimer() {
+        if (this.interval) {
+            clearInterval(this.interval);
+            this.interval = null;
+        }
+    },
+    resumeTimer() {
+        if (!this.interval) {
+            this.startTimer();
+        }
     },
     stopTimer() {
         if (this.interval) {
@@ -144,6 +174,14 @@ new class extends Component
         }
     });
 
+    $watch('$wire.isPaused', (isPaused) => {
+        if (isPaused) {
+            pauseTimer();
+        } else {
+            resumeTimer();
+        }
+    });
+
     window.addEventListener('routine-timer-ended', () => {
         handleTimerChange();
     });
@@ -165,6 +203,22 @@ new class extends Component
             <span class="inline-flex items-center px-4 py-2 border border-transparent font-mono text-3xl font-medium text-purple-500">
                 {{ $timeLeft }}
             </span>
+
+            @if (! $isPaused)
+                <button type="button" wire:click="pause" @click="$event.target.blur()" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-yellow-500 hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500 gap-2 cursor-pointer">
+                    PAUSE
+                    <flux:icon.pause class="ml-2" />
+                </button>
+            @else
+                <button type="button" wire:click="resume" @click="$event.target.blur()" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 gap-2 cursor-pointer">
+                    RESUME
+                    <flux:icon.play class="ml-2" />
+                </button>
+                <button type="button" wire:click="stop" @click="$event.target.blur()" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-red-500 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 gap-2 cursor-pointer">
+                    STOP
+                    <flux:icon.stop class="ml-2" />
+                </button>
+            @endif
         </div>
     @endif
 </div>

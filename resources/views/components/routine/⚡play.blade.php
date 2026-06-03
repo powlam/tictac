@@ -38,7 +38,7 @@ new class extends Component
     public function stop()
     {
         $this->currentIndex = $this->routine->timers->count() - 1;
-        $this->currentTimer = $this->routine->timers[$this->currentIndex];
+        $this->currentTimer = $this->routine->timers[$this->currentIndex] ?? null;
         $this->nextTimer();
     }
 

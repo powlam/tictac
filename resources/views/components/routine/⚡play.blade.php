@@ -19,14 +19,21 @@ new class extends Component
     public function play()
     {
         $this->isPlaying = true;
-        $this->currentIndex = 0;
+        $this->currentIndex = -1;
         $this->setCurrentTimer();
     }
 
     public function setCurrentTimer()
     {
         if ($this->currentIndex < $this->routine->timers->count()) {
-            $this->currentTimer = $this->routine->timers[$this->currentIndex];
+            if ($this->currentIndex >= 0) {
+                $this->currentTimer = $this->routine->timers[$this->currentIndex];
+            } else {
+                $this->currentTimer = (new Timer())->forceFill([
+                    'name' => 'Get Ready',
+                    'duration' => 5,
+                ]);
+            }
             $this->timeLeft = $this->currentTimer->duration;
         } else {
             $this->isPlaying = false;
